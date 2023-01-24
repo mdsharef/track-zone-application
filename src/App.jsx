@@ -11,7 +11,12 @@ const App = () => {
     updateLocalClock,
     createClock,
     updateClock,
-    deleteClock
+    deleteClock,
+    getEventsByClockID,
+    addEvent,
+    deleteEvent,
+    updateEvent,
+    deleteEventsByClockID,
   } = useApp(localClockInitState);
 
   return (
@@ -25,7 +30,12 @@ const App = () => {
         clocks={clocks}
         localClock={localClock.date}
         updateClock={updateClock} 
-        deleteClock={deleteClock} 
+        deleteClock={deleteClock}
+        getEventsByClockID={getEventsByClockID}
+        addEvent={addEvent}
+        deleteEvent={deleteEvent}
+        updateEvent={updateEvent}
+        deleteEventsByClockID={deleteEventsByClockID} 
       />
     </div>
   )

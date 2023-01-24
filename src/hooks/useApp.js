@@ -1,12 +1,30 @@
 import { useState } from "react";
 import deepClone from "../utils/deepClone";
 import generateID from "../utils/generateId";
+import useEvents from "./useEvents";
 
 const getID = generateID('clock');
 
 const useApp = (initValue) => {
   const [localClock, setLocalClock] = useState(deepClone(initValue));
   const [clocks, setClocks] = useState([]);
+
+  const [eventState, setEventState] = useState(null)
+
+  const {
+    // events,
+    // getEvents,
+    getEventsByClockID,
+    addEvent,
+    deleteEvent,
+    deleteEventsByClockID,
+    updateEvent,
+  } = useEvents();
+
+  const handleEventState = (clockID) => {
+    setEventState(getEventsByClockID(clockID, true));
+  }
+
 
   const updateLocalClock = (data) => {
     setLocalClock({
@@ -41,7 +59,14 @@ const useApp = (initValue) => {
     updateLocalClock,
     createClock,
     updateClock,
-    deleteClock
+    deleteClock,
+    eventState,
+    handleEventState,
+    getEventsByClockID,
+    addEvent,
+    deleteEvent,
+    updateEvent,
+    deleteEventsByClockID,
   }
 }
 

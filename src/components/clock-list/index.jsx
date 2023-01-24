@@ -1,17 +1,16 @@
-import useEvents from "../../hooks/useEvents";
 import ClockListItem from "../clock-list-item";
 
-const ClockList = ({ clocks, localClock, updateClock, deleteClock }) => {
-  
-  const {
-    // events,
-    // getEvents,
-    getEventsByClockID,
-    addEvent,
-    deleteEvent,
-    deleteEventsByClockID,
-    updateEvent,
-  } = useEvents()
+const ClockList = ({
+  clocks, 
+  localClock, 
+  updateClock, 
+  deleteClock,
+  getEventsByClockID,
+  addEvent,
+  deleteEvent,
+  updateEvent,
+  deleteEventsByClockID, 
+}) => {
 
   return (
     <div>
@@ -28,10 +27,10 @@ const ClockList = ({ clocks, localClock, updateClock, deleteClock }) => {
               localClock={localClock}
               updateClock={updateClock}
               deleteClock={deleteClock}
+              getEventsByClockID={getEventsByClockID}
               addEvent={addEvent}
               deleteEvent={deleteEvent}
               updateEvent={updateEvent}
-              getEventsByClockID={getEventsByClockID}
               deleteEventsByClockID={deleteEventsByClockID}
             />
           ))

@@ -9,10 +9,10 @@ const ClockListItem = ({
   localClock, 
   updateClock, 
   deleteClock,
+  getEventsByClockID,
   addEvent,
   deleteEvent,
   updateEvent,
-  getEventsByClockID,
   deleteEventsByClockID,
 }) => {
     const { date } = useClock(clock.timezone, clock.offset);
@@ -36,10 +36,10 @@ const ClockListItem = ({
         />
         <EventAction 
           clockID={clock.id}
+          getEventsByClockID={getEventsByClockID}
           addEvent={addEvent}
           deleteEvent={deleteEvent}
           updateEvent={updateEvent}
-          getEventsByClockID={getEventsByClockID}
           deleteEventsByClockID={deleteEventsByClockID}
         />
       </div>

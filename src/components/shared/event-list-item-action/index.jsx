@@ -12,7 +12,7 @@ const EventListItemAction = ({
         <div>
             <div>
                 <button onClick={() => setIsEdit(!isEdit)}>Edit Event</button>
-                <button onClick={deleteEvent(event.id)}>Delete Event</button>
+                <button onClick={() => deleteEvent(event.id)}>Delete Event</button>
             </div>
             {isEdit && (
                 <EventForm

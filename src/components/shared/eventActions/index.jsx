@@ -3,11 +3,11 @@ import EventList from "../../event-list";
 import EventForm from "../event-form";
 
 const EventAction = ({
+    getEventsByClockID,
     addEvent,
     updateEvent,
     clockID,
     deleteEvent,
-    getEventsByClockID,
     deleteEventsByClockID,
 }) => {
     const [isCreate, setIsCreate] = useState(false);
@@ -16,7 +16,7 @@ const EventAction = ({
     const handleCreate = () => {
         setIsCreate(!isCreate);
     }
-
+    
     const handleToggle = () => {
         setIsToggle(!isToggle);
     }
@@ -41,9 +41,9 @@ const EventAction = ({
                     <h3>Events of this clock</h3>
                     <EventList 
                         clockID={clockID}
+                        getEventsByClockID={getEventsByClockID}
                         deleteEvent={deleteEvent}
                         updateEvent={updateEvent}
-                        getEventsByClockID={getEventsByClockID}
                         deleteEventsByClockID={deleteEventsByClockID}
                     />
                 </>

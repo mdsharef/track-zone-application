@@ -1,5 +1,4 @@
 import useForm from "../../../hooks/useForm"
-// import { eventValidationInitial } from "../../../initialStates/eventInitState"
 import checkValidity from "../../../utils/checkValidity"
 
 const EventForm = ({
@@ -8,7 +7,7 @@ const EventForm = ({
     handleEvent,
     edit=false
 }) => {
-    console.log(values);
+    // console.log(values);
 
     const {
        formState: events,
@@ -19,13 +18,17 @@ const EventForm = ({
        clear, 
     } = useForm({init: values, validate: checkValidity, willTimezoneUpdated: false});
 
-    // const handleUpdate = (values) => {
-    //     handleEvent(values, clockID)
-    // }
+    const handleEventSubmit = (e) => {
+        if(!edit) {
+            handleSubmit(e, handleEvent, {clockID: clockID});
+        } else {
+            handleSubmit(e, handleEvent)
+        }
+    }
 
     return (
         <div>
-            <form onSubmit={(e) => handleSubmit(e, handleEvent, {clockID: clockID})}>
+            <form onSubmit={handleEventSubmit}>
                 <div>
                     <label htmlFor="title">Title : </label>
                     <input 
