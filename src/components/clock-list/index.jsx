@@ -1,4 +1,22 @@
+import styled from "styled-components";
 import ClockListItem from "../clock-list-item";
+
+const Title = styled.h3`
+  text-align: center;
+  font-weight: ${props => props.secondTitle ? 400 : 500};
+  font-size: ${props => props.secondTitle ? '1.7em' : '2em'};
+  margin-bottom: ${props => props.secondTitle ? '0px' : '7px'};
+`;
+
+const Container = styled.div`
+  margin-bottom: 20px;
+  padding: ${props => props.childCom && '5px'};
+  display: ${props => props.childCom && 'flex'};
+  justify-content: ${props => props.childCom && 'center'};
+  align-items: ${props => props.childCom && 'center'};
+  gap: ${props => props.childCom && '1em'};
+`
+
 
 const ClockList = ({
   clocks, 
@@ -13,12 +31,12 @@ const ClockList = ({
 }) => {
 
   return (
-    <div>
-      <h3>Other Clocks</h3>
-      <hr />
-      <div>
+    <Container>
+      <Title>Other Clocks</Title>
+      <hr style={{marginBottom: '20px'}} />
+      <Container childCom={true}>
         {clocks.length === 0 ? (
-          <h3>There is no other clock</h3>
+          <Title secondTitle={true}>There is no other clock</Title>
         ) : (
           clocks.map(clock => (
             <ClockListItem 
@@ -35,8 +53,8 @@ const ClockList = ({
             />
           ))
         )}
-      </div>
-    </div>
+      </Container>
+    </Container>
   )
 }
 

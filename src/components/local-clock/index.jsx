@@ -1,7 +1,16 @@
 import { useEffect } from "react";
+import styled from "styled-components";
 import useClock from "../../hooks/useClock";
 import ClockActions from "../shared/clock-actions";
 import DisplayClock from "../shared/display-clock";
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 55px;
+  gap: 2em;
+`;
 
 const LocalClock = ({ clock, updateClock, createClock }) => {
   const { date, timezone, offset } = useClock(clock.timezone, clock.offset);
@@ -15,7 +24,7 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
   }, [date])
 
   return (
-    <div>
+    <Container>
       {date && (
         <DisplayClock 
           date={date} 
@@ -30,7 +39,7 @@ const LocalClock = ({ clock, updateClock, createClock }) => {
         updateClock={updateClock} 
         createClock={createClock}
       />
-    </div>
+    </Container>
   )
 }
 
