@@ -14,6 +14,7 @@ const Container = styled.div`
   display: ${props => props.childCom && 'flex'};
   justify-content: ${props => props.childCom && 'center'};
   align-items: ${props => props.childCom && 'center'};
+  flex-wrap: ${props => props.childCom && 'wrap'};
   gap: ${props => props.childCom && '1em'};
 `
 
