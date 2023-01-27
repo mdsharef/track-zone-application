@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import EventList from "../../event-list";
-import EventForm from "../event-form";
+import DialogModal from "../../ui/Dialog";
 
 const Button = styled.button`
     padding: 4px 10px;
@@ -31,8 +31,12 @@ const EventAction = ({
     const [isCreate, setIsCreate] = useState(false);
     const [isToggle, setIsToggle] = useState(false);
 
-    const handleCreate = () => {
-        setIsCreate(!isCreate);
+    const handleCreateOpen = () => {
+        setIsCreate(true);
+    }
+
+    const handleCreateClose = () => {
+        setIsCreate(false);
     }
     
     const handleToggle = () => {
@@ -42,18 +46,17 @@ const EventAction = ({
     return (
         <div>
             <Container>
-                <Button onClick={handleCreate}>Create Event</Button>
+                <Button onClick={handleCreateOpen}>Create Event</Button>
                 <Button onClick={handleToggle}>Toggle Events</Button>
             </Container>
-            {isCreate && (
-                <>
-                    <h3>Create Event</h3>
-                    <EventForm
-                        clockID={clockID}
-                        handleEvent={addEvent}
-                    />
-                </>
-            )}
+        
+            <DialogModal 
+                clockID={clockID}
+                handleEvent={addEvent}
+                open={isCreate}
+                handleClose={handleCreateClose}
+            />
+
             {isToggle && (
                 <>
                     <h3>Events of this clock</h3>

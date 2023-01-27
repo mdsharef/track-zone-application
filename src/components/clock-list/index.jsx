@@ -18,7 +18,6 @@ const Container = styled.div`
   gap: ${props => props.childCom && '1em'};
 `
 
-
 const ClockList = ({
   clocks, 
   localClock, 

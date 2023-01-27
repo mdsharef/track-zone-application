@@ -1,10 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import styled from "styled-components";
-import { timezoneOffset } from "../../../constant/timezoneObj";
-import useForm from "../../../hooks/useForm";
-import checkValidity from "../../../utils/checkValidity";
-import getOffsetValues from "../../../utils/getOffsetValues";
-import getTimezoneValues from "../../../utils/getTimezoneValues";
+import { timezoneOffset } from "../../constant/timezoneObj";
+import useForm from "../../hooks/useForm";
+import checkValidity from "../../utils/checkValidity";
+import getOffsetValues from "../../utils/getOffsetValues";
+import getTimezoneValues from "../../utils/getTimezoneValues";
 
 const Label = styled.label`
     font-size: 16px;
@@ -126,8 +126,8 @@ const ClockForm = ({
                     </div>
                 )}
                 <div>
-                    <Button variant="contained" color="warning" onClick={clear} sx={{marginRight: '10px'}} type="reset">Clear</Button>
-                    <Button variant="contained" type="submit">{edit ? 'Update' : 'Create'}</Button>
+                    <Button variant="contained" color="warning" onClick={clear} sx={{marginRight: '10px'}}>Clear</Button>
+                    <Button variant="contained">{edit ? 'Update' : 'Create'}</Button>
                 </div>
             </form>
         </div>

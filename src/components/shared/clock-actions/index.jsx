@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import ClockForm from "../clock-form";
+import Popup from "../../ui/Popup";
 
 const Container = styled.div`
     display: flex;
@@ -20,37 +20,49 @@ const Button = styled.button`
 
 const ClockActions = ({ local=false, clock, updateClock, createClock, deleteClock }) => {
     const [isEdit, setIsEdit] = useState(false);
-    const [isCreate, setIsCreate] = useState(false)
+    const [isCreate, setIsCreate] = useState(false);
+
+    const handleCreateOpen = () => {
+        setIsCreate(true)
+    }
+
+    const handleCreateClose = () => {
+        setIsCreate(false)
+    }
+
+    const handleEditOpen = () => {
+        setIsEdit(true)
+    }
+
+    const handleEditClose = () => {
+        setIsEdit(false)
+    }
 
     return (
         <div>
             <Container clock={!local}>
-                <Button onClick={() => setIsEdit(!isEdit)} clock={!local}>Edit</Button>
+                <Button onClick={handleEditOpen} clock={!local}>Edit</Button>
                 {local ? (
-                        <Button onClick={() => setIsCreate(!isCreate)} clock={!local}>Create</Button>
+                        <Button onClick={handleCreateOpen} clock={!local}>Create</Button>
                     ) : (
                         <Button onClick={() => deleteClock(clock.id)} clock={!local}>Delete</Button>
                     )}
             </Container>
-            {isEdit && (
-                <>
-                    <h3>Edit Clock</h3>
-                    <ClockForm 
-                        values={clock} 
-                        handleClock={updateClock} 
-                        title={!local} 
-                        edit={true} 
-                    />
-                </>
-            )}
-            {isCreate && (
-                <>
-                    <h3>Create Clock</h3>
-                    <ClockForm 
-                        handleClock={createClock}
-                    />
-                </>
-            )}
+
+            <Popup 
+                values={clock}
+                handleClock={updateClock} 
+                title={!local} 
+                edit={true} 
+                open={isEdit}
+                handleClose={handleEditClose}
+            />
+            
+            <Popup 
+                handleClock={createClock}
+                open={isCreate}
+                handleClose={handleCreateClose}
+            />
         </div>
     )
 }

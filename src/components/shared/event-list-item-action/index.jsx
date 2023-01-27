@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EventForm from "../event-form";
+import DialogModal from "../../ui/Dialog";
 
 const EventListItemAction = ({
     event,
@@ -8,20 +8,28 @@ const EventListItemAction = ({
 }) => {
     const [isEdit, setIsEdit] = useState(false)
 
+    const handleEditOpen = () => {
+        setIsEdit(true)
+    }
+
+    const handleEditClose = () => {
+        setIsEdit(false)
+    }
+
     return (
         <div>
             <div>
-                <button onClick={() => setIsEdit(!isEdit)}>Edit Event</button>
+                <button onClick={handleEditOpen}>Edit Event</button>
                 <button onClick={() => deleteEvent(event.id)}>Delete Event</button>
             </div>
-            {isEdit && (
-                <EventForm
-                    clockID={event.id}
-                    values={event}
-                    handleEvent={updateEvent}
-                    edit={true}
-                />
-            )}
+
+            <DialogModal 
+                values={event}
+                handleEvent={updateEvent}
+                edit={true}
+                open={isEdit}
+                handleClose={handleEditClose}
+            />
         </div>
     )
 };
